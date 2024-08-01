@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
-
+    id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
 
 }
@@ -38,6 +38,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    /*kapt {
+        useBuildCache = false
+    }*/
 }
 
 dependencies {
