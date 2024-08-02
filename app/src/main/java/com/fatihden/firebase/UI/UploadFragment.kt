@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fatihden.firebase.R
+import com.fatihden.firebase.databinding.FragmentUploadBinding
 
 
 class UploadFragment : Fragment() {
+
+    private var _binding:FragmentUploadBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +23,14 @@ class UploadFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_upload, container, false)
+        _binding = FragmentUploadBinding.inflate(inflater,container,false)
+        val view = binding.root
+        return view
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
 
+        _binding = null
+    }
 }
