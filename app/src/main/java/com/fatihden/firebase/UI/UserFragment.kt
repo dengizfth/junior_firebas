@@ -37,6 +37,15 @@ class UserFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.signUpBtn.setOnClickListener {
+
+
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
