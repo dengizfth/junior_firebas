@@ -73,8 +73,9 @@ class UserFragment : Fragment() {
                         val action = UserFragmentDirections.actionUserFragmentToFeedFragment()
                         Navigation.findNavController(it).navigate(action)
                     }
-                    .addOnFailureListener {
-
+                    .addOnFailureListener {exception->
+                        // Hata mesajını kullanıcının anlayacağı şekilde Toast Mesajı fırlatır
+                        Toast.makeText(requireContext(),exception.localizedMessage,Toast.LENGTH_LONG).show()
                     }
 
             }
