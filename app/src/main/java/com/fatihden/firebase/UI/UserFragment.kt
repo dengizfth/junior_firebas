@@ -73,6 +73,9 @@ class UserFragment : Fragment() {
                         val action = UserFragmentDirections.actionUserFragmentToFeedFragment()
                         Navigation.findNavController(it).navigate(action)
                     }
+                    .addOnFailureListener {
+
+                    }
 
             }
 
