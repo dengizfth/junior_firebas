@@ -47,6 +47,9 @@ class UserFragment : Fragment() {
 
             if(email.isNotEmpty() && password.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(email,password)
+                    .addOnCompleteListener { task ->
+
+                    }
 
             }
 
