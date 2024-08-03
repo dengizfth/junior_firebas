@@ -10,7 +10,9 @@ import android.widget.PopupMenu
 import androidx.navigation.Navigation
 import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentFeedBinding
-
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
@@ -20,9 +22,14 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     // Pop Up menu decleration
     private lateinit var popupMenu: PopupMenu
 
+    //Firebase Decleration
+    private lateinit var auth : FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //Firebase , Initialize Auth
+        auth = Firebase.auth
     }
 
     override fun onCreateView(
