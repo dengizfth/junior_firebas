@@ -3,15 +3,17 @@ package com.fatihden.firebase.UI
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.navigation.Navigation
 import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentFeedBinding
 
 
 
-class FeedFragment : Fragment() {
+class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!
 
@@ -49,11 +51,31 @@ class FeedFragment : Fragment() {
             popupMenu.show()
 
         }
+        //FeedFragment tetikler ve alttaki fun çalıştırır
+        popupMenu.setOnMenuItemClickListener(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+        when(item?.itemId){
+            R.id.uploadItem -> {
+                // Resim Yükleme ekranı :
+                val action = FeedFragmentDirections.actionFeedFragmentToUploadFragment()
+                Navigation.findNavController(requireView()).navigate(action)
+            }
+            R.id.logOutItem -> {
+                // Çıkış :
+                val action = FeedFragmentDirections.actionFeedFragmentToUserFragment()
+                Navigation.findNavController(requireView()).navigate(action)
+
+            }
+        }
+        return true
     }
 
 }
