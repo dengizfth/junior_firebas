@@ -68,8 +68,10 @@ class UserFragment : Fragment() {
             val password = binding.passwordET.text.toString()
             if(email.isNotEmpty() && password.isNotEmpty()) {
                 auth.signInWithEmailAndPassword(email,password)
-                    .addOnSuccessListener {
-
+                    .addOnSuccessListener {authResult ->
+                        // kullanıcı giriş yaptıysa :
+                        val action = UserFragmentDirections.actionUserFragmentToFeedFragment()
+                        Navigation.findNavController(it).navigate(action)
                     }
 
             }
