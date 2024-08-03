@@ -77,6 +77,7 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
             }
             R.id.logOutItem -> {
                 // Çıkış :
+                auth.signOut()
                 val action = FeedFragmentDirections.actionFeedFragmentToUserFragment()
                 Navigation.findNavController(requireView()).navigate(action)
 
