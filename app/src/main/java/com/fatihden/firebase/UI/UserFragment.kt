@@ -66,6 +66,10 @@ class UserFragment : Fragment() {
         binding.loginBtn.setOnClickListener {
             val email = binding.emailET.text.toString()
             val password = binding.passwordET.text.toString()
+            if(email.isNotEmpty() && password.isNotEmpty()) {
+
+            }
+
         }
 
 
