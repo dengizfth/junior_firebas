@@ -54,7 +54,10 @@ class UserFragment : Fragment() {
                             Navigation.findNavController(it).navigate(action)
                         }
                     }
-
+                    .addOnFailureListener{exception ->
+                        // Hata mesajını kullanıcının anlayacağı şekilde Toast Mesajı fırlatır
+                        Toast.makeText(requireContext(),exception.localizedMessage,Toast.LENGTH_LONG).show()
+                    }
             }
 
         }
