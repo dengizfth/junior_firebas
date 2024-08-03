@@ -40,6 +40,13 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Kullanıcı zaten giriş yaptıysa :
+        val userAllreadyLogIn = auth.currentUser
+        if (userAllreadyLogIn != null ){
+            val action = UserFragmentDirections.actionUserFragmentToFeedFragment()
+            Navigation.findNavController(view).navigate(action)
+        }
+
         binding.signUpBtn.setOnClickListener {
 
             val email = binding.emailET.text.toString()
