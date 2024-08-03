@@ -46,6 +46,7 @@ class UserFragment : Fragment() {
             val password = binding.passwordET.text.toString()
 
             if(email.isNotEmpty() && password.isNotEmpty()) {
+                auth.createUserWithEmailAndPassword(email,password)
 
             }
 
