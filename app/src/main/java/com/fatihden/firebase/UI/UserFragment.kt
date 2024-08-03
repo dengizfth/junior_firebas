@@ -48,7 +48,11 @@ class UserFragment : Fragment() {
             if(email.isNotEmpty() && password.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(email,password)
                     .addOnCompleteListener { task ->
-
+                        if (task.isSuccessful) {
+                            // Kullanıcı Oluşturulduysa :
+                            val action = UserFragmentDirections.actionUserFragmentToFeedFragment()
+                            Navigation.findNavController(it).navigate(action)
+                        }
                     }
 
             }
