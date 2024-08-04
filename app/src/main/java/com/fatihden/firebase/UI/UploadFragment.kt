@@ -2,17 +2,20 @@ package com.fatihden.firebase.UI
 
 import android.Manifest
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.fatihden.firebase.R
@@ -37,6 +40,7 @@ class UploadFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        reginsterLauncher()
     }
 
     override fun onCreateView(
@@ -93,5 +97,29 @@ class UploadFragment : Fragment() {
         super.onDestroy()
 
         _binding = null
+    }
+
+    // onCreate içersinden çağırmak gerekiyor :
+    private fun reginsterLauncher() {
+        // initialize
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val intentFromResult = result.data
+                if (intentFromResult != null) {
+                    selectedPicture = intentFromResult.data
+                    try {
+                        if (Build.VERSION.SDK_INT >= 28) {
+                            // SDK 28 ve üstü
+
+                        } else {
+                            // 27 ve altı için :
+
+                        }
+                    } catch (e: Exception) {
+
+                    }
+                }
+            }
+        }
     }
 }
