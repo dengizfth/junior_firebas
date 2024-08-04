@@ -86,7 +86,28 @@ class UploadFragment : Fragment() {
 
         } else {
             // sdk 33'ün altındaki eski versionlar için -> read external storage :
+            if (ContextCompat.checkSelfPermission(requireContext(),Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                // İzin yok, izin iste :
 
+                //Daha öncesinde izin istemiyi red etti mi ? kontrol edilmesi :
+                if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    //İzni red etmiş : Bunun için neden izin istediğimizi açıklayarak bir kere daha izin istenilmeli :
+                    Snackbar.make(view , "Galeriden Fotoraf seçmek için vermeniz gerekiyor",Snackbar.LENGTH_INDEFINITE)
+                        .setAction("İzin Ver" , View.OnClickListener {
+                            // İzin İsteyeceğimiz alan :
+                            permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        }).show()
+                } else {
+                    // izin isteyeceğimiz alan :
+                    permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+
+            } else {
+                // izin var , telefonun galerisini aç :
+                // Galeriyi aç :
+                val intentToGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(intentToGallery)
+            }
         }
 
 
