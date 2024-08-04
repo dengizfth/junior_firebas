@@ -6,6 +6,7 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -110,6 +111,12 @@ class UploadFragment : Fragment() {
                     try {
                         if (Build.VERSION.SDK_INT >= 28) {
                             // SDK 28 ve üstü
+                            val source = ImageDecoder.createSource(
+                                requireActivity().contentResolver,
+                                selectedPicture!!
+                            )
+                            selectedBitmap = ImageDecoder.decodeBitmap(source)
+                            binding.imageView.setImageBitmap(selectedBitmap)
 
                         } else {
                             // 27 ve altı için :
