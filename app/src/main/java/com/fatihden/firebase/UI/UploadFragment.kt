@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentUploadBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 class UploadFragment : Fragment() {
@@ -46,6 +47,12 @@ class UploadFragment : Fragment() {
                 //Daha öncesinde izin istemiyi red etti mi ? kontrol edilmesi :
                 if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),Manifest.permission.READ_MEDIA_IMAGES)) {
                     //İzni red etmiş : Bunun için neden izin istediğimizi açıklayarak bir kere daha izin istenilmeli :
+                    Snackbar.make(view , "Galeriden Fotoraf seçmek için vermeniz gerekiyor",Snackbar.LENGTH_INDEFINITE)
+                        .setAction("İzin Ver" , View.OnClickListener {
+                                // İzin İsteyeceğimiz alan :
+                        }).show()
+                } else {
+                    // izin isteyeceğimiz alan :
 
                 }
 
