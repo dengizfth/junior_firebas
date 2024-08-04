@@ -68,11 +68,12 @@ class UploadFragment : Fragment() {
                     //İzni red etmiş : Bunun için neden izin istediğimizi açıklayarak bir kere daha izin istenilmeli :
                     Snackbar.make(view , "Galeriden Fotoraf seçmek için vermeniz gerekiyor",Snackbar.LENGTH_INDEFINITE)
                         .setAction("İzin Ver" , View.OnClickListener {
-                                // İzin İsteyeceğimiz alan :
+                            // İzin İsteyeceğimiz alan :
+                            permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
                         }).show()
                 } else {
                     // izin isteyeceğimiz alan :
-
+                    permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
                 }
 
             } else {
