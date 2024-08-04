@@ -127,7 +127,7 @@ class UploadFragment : Fragment() {
                             binding.imageView.setImageBitmap(selectedBitmap)
                         }
                     } catch (e: Exception) {
-
+                        e.printStackTrace()
                     }
                 }
             }
