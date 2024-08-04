@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -138,6 +139,7 @@ class UploadFragment : Fragment() {
                 // izin verildi
             } else {
                 // kullanici izini reddetti
+                Toast.makeText(requireContext(),"Fotoraf Seçimi İçin İzin Verilmesi Gerekiyor",Toast.LENGTH_LONG).show()
             }
         }
     }
