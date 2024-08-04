@@ -113,7 +113,11 @@ class UploadFragment : Fragment() {
 
                         } else {
                             // 27 ve altı için :
-
+                            selectedBitmap = MediaStore.Images.Media.getBitmap(
+                                requireActivity().contentResolver,
+                                selectedPicture
+                            )
+                            binding.imageView.setImageBitmap(selectedBitmap)
                         }
                     } catch (e: Exception) {
 
