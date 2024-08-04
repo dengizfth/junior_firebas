@@ -132,5 +132,13 @@ class UploadFragment : Fragment() {
                 }
             }
         }
+        // izin isteme :
+        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {result ->
+            if (result) {
+                // izin verildi
+            } else {
+                // kullanici izini reddetti
+            }
+        }
     }
 }
