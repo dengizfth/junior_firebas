@@ -77,7 +77,9 @@ class UploadFragment : Fragment() {
 
             } else {
                 // izin var , telefonun galerisini aç :
-
+                // Galeriyi aç :
+                val intentToGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(intentToGallery)
             }
 
 
@@ -137,6 +139,9 @@ class UploadFragment : Fragment() {
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {result ->
             if (result) {
                 // izin verildi
+                // Galeriyi aç :
+                val intentToGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                activityResultLauncher.launch(intentToGallery)
             } else {
                 // kullanici izini reddetti
                 Toast.makeText(requireContext(),"Fotoraf Seçimi İçin İzin Verilmesi Gerekiyor",Toast.LENGTH_LONG).show()
