@@ -1,11 +1,14 @@
 package com.fatihden.firebase.UI
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentUploadBinding
 
@@ -35,6 +38,13 @@ class UploadFragment : Fragment() {
         // Resim seçme için api 33 altı , 33 ve üstü için ayrı ayrı kontroller:
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ){
             // sdk 33 ve yukarısı için -> read media images izni :
+            if (ContextCompat.checkSelfPermission(requireContext(),Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                // İzin yok, izin iste :
+
+            } else {
+                // izin var , telefonun galerisini aç :
+
+            }
 
 
         } else {
