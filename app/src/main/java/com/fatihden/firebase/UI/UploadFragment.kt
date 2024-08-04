@@ -2,13 +2,17 @@ package com.fatihden.firebase.UI
 
 import android.Manifest
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.fatihden.firebase.R
@@ -20,6 +24,15 @@ class UploadFragment : Fragment() {
 
     private var _binding:FragmentUploadBinding? = null
     private val binding get() = _binding!!
+
+    // Yeni activity açmak için kullanıcaz ( Galeriyi açmak gibi )
+    private lateinit var activityResultLauncher : ActivityResultLauncher<Intent>
+    // izinler için
+    private lateinit var permissionLauncher:ActivityResultLauncher<String>
+    // Açılan pencereden seçilen resmin adresi tutmak için
+    var selectedPicture : Uri? = null
+    // Secilen resmi Bitmap olarak tutmak için :
+    var selectedBitmap : Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
