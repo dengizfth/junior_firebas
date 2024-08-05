@@ -124,6 +124,17 @@ class UploadFragment : Fragment() {
 
 
         binding.uploadBtn.setOnClickListener {
+            val reference = storage.reference
+            val gorselReferansi = reference.child("images").child("image.jpg")
+            if (selectedPicture != null){
+                gorselReferansi.putFile(selectedPicture!!).addOnSuccessListener { uploadTask ->
+                    // Url alma işlemi yapacağız
+                }
+                    .addOnFailureListener { exception ->
+                        // Yükleme esnasında hata fırlatıyorsa :
+
+                    }
+            }
 
 
         }
