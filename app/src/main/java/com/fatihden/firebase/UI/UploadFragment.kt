@@ -179,6 +179,9 @@ class UploadFragment : Fragment() {
 
                             db.collection("Posts").add(postMap).addOnSuccessListener { documentReference ->
 
+                            }.addOnFailureListener { exception ->
+                                Toast.makeText(requireContext(),exception.localizedMessage, Toast.LENGTH_LONG).show()
+
                             }
                         }
 
