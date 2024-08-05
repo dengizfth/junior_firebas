@@ -24,7 +24,10 @@ import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentUploadBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 
 
 class UploadFragment : Fragment() {
@@ -48,6 +51,8 @@ class UploadFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = Firebase.auth
+        storage = Firebase.storage
 
         reginsterLauncher()
     }
