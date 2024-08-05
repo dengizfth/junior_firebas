@@ -23,6 +23,8 @@ import com.fatihden.firebase.databinding.FragmentUploadBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
@@ -52,10 +54,14 @@ class UploadFragment : Fragment() {
     //Kullanıcı media'larını depoya yüklemek için
     private lateinit var storage: FirebaseStorage
 
+    // veri tabanına kaydetmek için
+    private lateinit var db :FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
         storage = Firebase.storage
+        db = Firebase.firestore
 
         reginsterLauncher()
     }
@@ -161,6 +167,8 @@ class UploadFragment : Fragment() {
                     gorselReferansi.downloadUrl.addOnSuccessListener { uri ->
                         val downloadUrl = uri.toString()
                         //println(downloadUrl) // Log'da resim url yazdırıp kontrol yapılabilir .Verilen url tıklanınca taracıda resmi gösterir
+
+                        // veri tabanına kayıt yap :
 
 
                     }
