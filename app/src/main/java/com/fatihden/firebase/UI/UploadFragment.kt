@@ -158,6 +158,12 @@ class UploadFragment : Fragment() {
             if (selectedPicture != null) {
                 gorselReferansi.putFile(selectedPicture!!).addOnSuccessListener { uploadTask ->
                     // Url alma işlemi yapacağız
+                    gorselReferansi.downloadUrl.addOnSuccessListener { uri ->
+                        val downloadUrl = uri.toString()
+                        //println(downloadUrl) // Log'da resim url yazdırıp kontrol yapılabilir .Verilen url tıklanınca taracıda resmi gösterir
+
+
+                    }
                 }.addOnFailureListener { exception ->
                     // Yükleme esnasında hata fırlatıyorsa :
                     Toast.makeText(requireContext(),exception.toString(),Toast.LENGTH_LONG).show()
