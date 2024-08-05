@@ -151,9 +151,10 @@ class UploadFragment : Fragment() {
 
         binding.uploadBtn.setOnClickListener {
             val uuid = UUID.randomUUID()
+            val gorselAdi = "${uuid}.jpg"
 
             val reference = storage.reference
-            val gorselReferansi = reference.child("images").child("image.jpg")
+            val gorselReferansi = reference.child("images").child(gorselAdi)
             if (selectedPicture != null) {
                 gorselReferansi.putFile(selectedPicture!!).addOnSuccessListener { uploadTask ->
                     // Url alma işlemi yapacağız
