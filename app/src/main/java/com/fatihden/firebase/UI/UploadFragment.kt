@@ -169,7 +169,9 @@ class UploadFragment : Fragment() {
                         //println(downloadUrl) // Log'da resim url yazdırıp kontrol yapılabilir .Verilen url tıklanınca taracıda resmi gösterir
 
                         // veri tabanına kayıt yap :
-
+                        val postMap = hashMapOf<String,Any>()
+                        postMap.put("downloadUrl",downloadUrl)
+                        postMap.put("email",auth.currentUser?.email.toString())
 
                     }
                 }.addOnFailureListener { exception ->
