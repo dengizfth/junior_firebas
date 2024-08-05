@@ -165,13 +165,16 @@ class UploadFragment : Fragment() {
                 gorselReferansi.putFile(selectedPicture!!).addOnSuccessListener { uploadTask ->
                     // Url alma işlemi yapacağız
                     gorselReferansi.downloadUrl.addOnSuccessListener { uri ->
-                        val downloadUrl = uri.toString()
-                        //println(downloadUrl) // Log'da resim url yazdırıp kontrol yapılabilir .Verilen url tıklanınca taracıda resmi gösterir
+                        if(auth.currentUser != null){
+                            val downloadUrl = uri.toString()
+                            //println(downloadUrl) // Log'da resim url yazdırıp kontrol yapılabilir .Verilen url tıklanınca taracıda resmi gösterir
 
-                        // veri tabanına kayıt yap :
-                        val postMap = hashMapOf<String,Any>()
-                        postMap.put("downloadUrl",downloadUrl)
-                        postMap.put("email",auth.currentUser?.email.toString())
+                            // veri tabanına kayıt yap :
+                            val postMap = hashMapOf<String,Any>()
+                            postMap.put("downloadUrl",downloadUrl)
+                            postMap.put("email",auth.currentUser!!.email.toString())
+                        }
+
 
                     }
                 }.addOnFailureListener { exception ->
