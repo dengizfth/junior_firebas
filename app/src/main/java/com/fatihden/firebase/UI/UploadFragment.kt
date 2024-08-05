@@ -23,6 +23,8 @@ import androidx.core.content.ContextCompat
 import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentUploadBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 
 
 class UploadFragment : Fragment() {
@@ -38,6 +40,11 @@ class UploadFragment : Fragment() {
     var selectedPicture : Uri? = null
     // Secilen resmi Bitmap olarak tutmak için :
     var selectedBitmap : Bitmap? = null
+
+    // Firebase kullanıcı bilgilerini almak için :
+    private lateinit var auth : FirebaseAuth
+    //Kullanıcı media'larını depoya yüklemek için
+    private lateinit var storage : FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
