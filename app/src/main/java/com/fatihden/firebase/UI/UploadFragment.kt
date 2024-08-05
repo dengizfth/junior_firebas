@@ -26,6 +26,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import java.util.UUID
 
 
 class UploadFragment : Fragment() {
@@ -149,6 +150,8 @@ class UploadFragment : Fragment() {
 
 
         binding.uploadBtn.setOnClickListener {
+            val uuid = UUID.randomUUID()
+
             val reference = storage.reference
             val gorselReferansi = reference.child("images").child("image.jpg")
             if (selectedPicture != null) {
