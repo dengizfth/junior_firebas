@@ -176,6 +176,10 @@ class UploadFragment : Fragment() {
                             postMap.put("email",auth.currentUser!!.email.toString())
                             postMap.put("comment",binding.commentText.text.toString())
                             postMap.put("date",Timestamp.now())
+
+                            db.collection("Posts").add(postMap).addOnSuccessListener { documentReference ->
+
+                            }
                         }
 
 
