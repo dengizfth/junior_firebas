@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.fatihden.firebase.databinding.FragmentUploadBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
@@ -178,6 +179,10 @@ class UploadFragment : Fragment() {
                             postMap.put("date",Timestamp.now())
 
                             db.collection("Posts").add(postMap).addOnSuccessListener { documentReference ->
+                                // veri database'e yüklenmiş ve başarılı olması durumdan ne yapmasını istiyorsan onu yazabiliriz
+                                // başarılı yüklendi yeni fragmente gitsin :
+                                val action = UploadFragmentDirections.actionUploadFragmentToFeedFragment()
+                                Navigation.findNavController(view).navigate(action)
 
                             }.addOnFailureListener { exception ->
                                 Toast.makeText(requireContext(),exception.localizedMessage, Toast.LENGTH_LONG).show()
