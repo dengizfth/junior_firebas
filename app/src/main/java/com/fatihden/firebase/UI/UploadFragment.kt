@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.fatihden.firebase.databinding.FragmentUploadBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -173,6 +174,8 @@ class UploadFragment : Fragment() {
                             val postMap = hashMapOf<String,Any>()
                             postMap.put("downloadUrl",downloadUrl)
                             postMap.put("email",auth.currentUser!!.email.toString())
+                            postMap.put("comment",binding.commentText.text.toString())
+                            postMap.put("date",Timestamp.now())
                         }
 
 
