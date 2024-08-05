@@ -156,7 +156,7 @@ class UploadFragment : Fragment() {
                     // Url alma işlemi yapacağız
                 }.addOnFailureListener { exception ->
                     // Yükleme esnasında hata fırlatıyorsa :
-
+                    Toast.makeText(requireContext(),exception.toString(),Toast.LENGTH_LONG).show()
                 }
             }
 
