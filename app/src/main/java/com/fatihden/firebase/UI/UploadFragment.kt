@@ -184,8 +184,8 @@ class UploadFragment : Fragment() {
                                 val action = UploadFragmentDirections.actionUploadFragmentToFeedFragment()
                                 Navigation.findNavController(view).navigate(action)
 
-                            }.addOnFailureListener { exception ->
-                                Toast.makeText(requireContext(),exception.localizedMessage, Toast.LENGTH_LONG).show()
+                            }.addOnFailureListener { exception1 ->
+                                Toast.makeText(requireContext(),"Hata 1" + exception1.localizedMessage, Toast.LENGTH_LONG).show()
 
                             }
                         }
@@ -194,7 +194,7 @@ class UploadFragment : Fragment() {
                     }
                 }.addOnFailureListener { exception ->
                     // Yükleme esnasında hata fırlatıyorsa :
-                    Toast.makeText(requireContext(),exception.toString(),Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(),"Hata 2 " + exception.toString(),Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -236,7 +236,8 @@ class UploadFragment : Fragment() {
                                 binding.imageView.setImageBitmap(selectedBitmap)
                             }
                         } catch (e: Exception) {
-                            e.printStackTrace()
+                           // e.printStackTrace()
+                            Toast.makeText(requireContext(),"Hata 0 "+ e.localizedMessage , Toast.LENGTH_LONG).show()
                         }
                     }
                 }
