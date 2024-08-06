@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.navigation.Navigation
+import com.fatihden.firebase.Adapter.PostAdapter
 import com.fatihden.firebase.Model.Post
 import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentFeedBinding
@@ -35,6 +36,10 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     // Gelen verileri List olarak tutmak için :
     val postList : ArrayList<Post> = arrayListOf()
 
+    // adapterın kullanılı :
+    private var adapter : PostAdapter? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,6 +61,12 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //İnitialization Adapter :
+        adapter = PostAdapter(postList)
+
+
+
         // xml'deki bir şeyi koda bağlarken sonu inflater ile biten yapıları kullanırız
         // layout'u koda bağlayınca LayoutInflater kullandığımız gibi menu içinde inflater var
         // istediği context e requireContext() verdikten sonra ne ile bağlantı yapıcağız
