@@ -110,7 +110,10 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
                 if (value != null) { // value null değilse
                     if (!value.isEmpty) {// value ! boş değilse
                         val documents = value.documents
-
+                        for (document in documents) {
+                            val comment = document.get("comment") as String // Castin işlemi --> String'e cast edicez
+                            println(comment)
+                        }
                     }
                 }
             }
