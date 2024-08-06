@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.navigation.Navigation
+import com.fatihden.firebase.Model.Post
 import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentFeedBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -32,7 +33,7 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     private lateinit var db:FirebaseFirestore
 
     // Gelen verileri List olarak tutmak için :
-    val postList : List<Post>
+    val postList : ArrayList<Post> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,6 +120,9 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
                             val comment = document.get("comment") as String // Castin işlemi --> String'e cast edicez
                             val email = document.get("email") as String // casting Stiring
                             val downloadUrl =  document.get("downloadUrl") as String
+
+                            var post = Post(email,comment,downloadUrl)
+                            postList.add(post)
                         }
                     }
                 }
