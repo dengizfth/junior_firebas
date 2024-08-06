@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fatihden.firebase.Adapter.PostAdapter
 import com.fatihden.firebase.Model.Post
 import com.fatihden.firebase.R
@@ -62,9 +63,6 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //İnitialization Adapter :
-        adapter = PostAdapter(postList)
-        binding.feedRecyclerView.adapter = adapter
 
 
         // xml'deki bir şeyi koda bağlarken sonu inflater ile biten yapıları kullanırız
@@ -88,6 +86,12 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
 
         //FireStore'dan verileri çeken function
         fireStoreGetData()
+
+        //İnitialization Adapter :
+        adapter = PostAdapter(postList) // Adapter nesnesi oluşturuldu . Recycler view'e veri aktarılacak .
+        binding.feedRecyclerView.layoutManager = LinearLayoutManager(requireContext()) // Dikey şekilde göstersin
+        binding.feedRecyclerView.adapter = adapter // adapter içersindeki verileri xml recyclerView aktarıcak ve üzerinde göstericek
+
     }
 
     override fun onDestroy() {
