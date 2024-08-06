@@ -17,6 +17,7 @@ import com.fatihden.firebase.databinding.FragmentFeedBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -120,7 +121,10 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
 
     // FireStore'dan verileri çek :
     private fun fireStoreGetData() {
-        db.collection("Posts").addSnapshotListener { value,error ->
+        // Collention'dan sonra firebase-database sorguları yazılır. orderBy(Sıralama demek )
+        // Diğer sorgu Where vs .. İçin ->https://firebase.google.com/docs/firestore/query-data/order-limit-data#kotlin+ktx_1
+        // Cloud Firestore order and limit data ve diper menülere bakılabilir.
+        db.collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { value,error ->
             if (error != null){
                 // error null değilse value' de sıkıntı olabilir .
                 Toast.makeText(requireContext(),error.localizedMessage,Toast.LENGTH_LONG).show()
