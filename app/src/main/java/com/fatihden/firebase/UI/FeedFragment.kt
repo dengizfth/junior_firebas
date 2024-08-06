@@ -64,7 +64,7 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
 
         //İnitialization Adapter :
         adapter = PostAdapter(postList)
-
+        binding.feedRecyclerView.adapter = adapter
 
 
         // xml'deki bir şeyi koda bağlarken sonu inflater ile biten yapıları kullanırız
