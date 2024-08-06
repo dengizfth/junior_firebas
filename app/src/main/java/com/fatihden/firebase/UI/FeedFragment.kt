@@ -12,6 +12,8 @@ import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentFeedBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
@@ -25,11 +27,17 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     //Firebase Decleration
     private lateinit var auth : FirebaseAuth
 
+    //databse decleration
+    private lateinit var db:FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //Firebase , Initialize Auth
         auth = Firebase.auth
+
+        //database initialization
+        db = Firebase.firestore
     }
 
     override fun onCreateView(
