@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fatihden.firebase.Model.Post
 import com.fatihden.firebase.databinding.RecyclerRowBinding
+import com.squareup.picasso.Picasso
 
 class PostAdapter(private val arrayListPost : ArrayList<Post>) :RecyclerView.Adapter<PostAdapter.PostHolder> () {
 
@@ -34,6 +35,7 @@ class PostAdapter(private val arrayListPost : ArrayList<Post>) :RecyclerView.Ada
         holder.binding.recyclerEmailText.text = arrayListPost[position].email
         holder.binding.recyclerCommentText.text = arrayListPost[position].comment
 
-
+        // Picasso ile firebase'deki resimlere erişme ve indirme işlemi
+        Picasso.get().load(arrayListPost[position].downloadUrl).into(holder.binding.recyclerImageView)
     }
 }
