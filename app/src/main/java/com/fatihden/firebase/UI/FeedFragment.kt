@@ -103,7 +103,7 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     private fun fireStoreGetData() {
         db.collection("Posts").addSnapshotListener { value,error ->
             if (error != null){
-                // error null değilse value'de sıkıntı olabilir .
+                // error null değilse value' de sıkıntı olabilir .
                 Toast.makeText(requireContext(),error.localizedMessage,Toast.LENGTH_LONG).show()
             } else {
                 // error null ve value içinde değer var -> verileri çektiğimiz anlamda
@@ -111,8 +111,11 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
                     if (!value.isEmpty) {// value ! boş değilse
                         val documents = value.documents
                         for (document in documents) {
+
+                            // Gelen Any? tipini casting yaparak String olarak alma :
                             val comment = document.get("comment") as String // Castin işlemi --> String'e cast edicez
-                            println(comment)
+                            val email = document.get("email") as String // casting Stiring
+                            val downloadUrl =  document.get("downloadUrl") as String
                         }
                     }
                 }
