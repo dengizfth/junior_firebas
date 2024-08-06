@@ -102,7 +102,17 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     // FireStore'dan verileri çek :
     private fun fireStoreGetData() {
         db.collection("Posts").addSnapshotListener { value,error ->
+            if (error != null){
+                // error null değilse value'de sıkıntı olabilir .
+                Toast.makeText(requireContext(),error.localizedMessage,Toast.LENGTH_LONG).show()
+            } else {
+                // error null ve value içinde değer var -> verileri çektiğimiz anlamda
+                if (value != null) { // value null değilse
+                    if (!value.isEmpty) {// value ! boş değilse
 
+                    }
+                }
+            }
         }
     }
 }
