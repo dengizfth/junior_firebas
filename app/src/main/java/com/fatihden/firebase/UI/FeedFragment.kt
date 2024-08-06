@@ -139,6 +139,9 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
                             var post = Post(email,comment,downloadUrl)
                             postList.add(post)
                         }
+                        // Adaptera yeni veriler gelir veya silinirse güncellemeyi ekrana yansıtması için burada tetikletiyorum
+                        // notifyDataSetChanged : Adapter'ı uyarır yeni güncelleme oldu diye
+                        adapter?.notifyDataSetChanged()
                     }
                 }
             }
