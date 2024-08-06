@@ -109,6 +109,7 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
                 // error null ve value içinde değer var -> verileri çektiğimiz anlamda
                 if (value != null) { // value null değilse
                     if (!value.isEmpty) {// value ! boş değilse
+                        val documents = value.documents
 
                     }
                 }
