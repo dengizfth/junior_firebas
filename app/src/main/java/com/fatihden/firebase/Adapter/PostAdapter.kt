@@ -29,7 +29,11 @@ class PostAdapter(private val arrayListPost : ArrayList<Post>) :RecyclerView.Ada
 
     // implementation :
     // Adapter ile iligi yapılacaklar :
+    // * binding'e erişmek için holder'ı kullanırız .
     override fun onBindViewHolder(holder: PostHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding.recyclerEmailText.text = arrayListPost[position].email
+        holder.binding.recyclerCommentText.text = arrayListPost[position].comment
+
+
     }
 }
