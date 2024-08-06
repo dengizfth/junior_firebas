@@ -31,6 +31,9 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
     //databse decleration
     private lateinit var db:FirebaseFirestore
 
+    // Gelen verileri List olarak tutmak için :
+    val postList : List<Post>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
