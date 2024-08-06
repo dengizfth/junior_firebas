@@ -68,6 +68,10 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
         }
         //FeedFragment tetikler ve alttaki fun çalıştırır
         popupMenu.setOnMenuItemClickListener(this)
+
+
+        //FireStore'dan verileri çeken function
+        fireStoreGetData()
     }
 
     override fun onDestroy() {
@@ -94,4 +98,8 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
         return true
     }
 
+    // FireStore'dan verileri çek :
+    private fun fireStoreGetData() {
+
+    }
 }
