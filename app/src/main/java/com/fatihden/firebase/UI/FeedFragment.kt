@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.fatihden.firebase.R
 import com.fatihden.firebase.databinding.FragmentFeedBinding
@@ -100,6 +101,8 @@ class FeedFragment : Fragment() , PopupMenu.OnMenuItemClickListener {
 
     // FireStore'dan verileri çek :
     private fun fireStoreGetData() {
+        db.collection("Posts").addSnapshotListener { value,error ->
 
+        }
     }
 }
