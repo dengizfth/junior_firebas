@@ -65,7 +65,7 @@ class UploadFragment : Fragment() {
         storage = Firebase.storage
         db = Firebase.firestore
 
-        reginsterLauncher()
+
     }
 
     override fun onCreateView(
@@ -201,7 +201,9 @@ class UploadFragment : Fragment() {
 
         }
 
-
+        binding.imageView.setOnClickListener {
+            reginsterLauncher()
+        }
     }
 
     override fun onDestroy() {
