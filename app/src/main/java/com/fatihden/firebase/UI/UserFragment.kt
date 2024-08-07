@@ -41,7 +41,7 @@ class UserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Kullanıcı zaten giriş yaptıysa :
-        val userAllreadyLogIn = auth.currentUser
+        val userAllreadyLogIn = auth.currentUser // GÜncel Kullanıcı var mı
         if (userAllreadyLogIn != null ){
             val action = UserFragmentDirections.actionUserFragmentToFeedFragment()
             Navigation.findNavController(view).navigate(action)
