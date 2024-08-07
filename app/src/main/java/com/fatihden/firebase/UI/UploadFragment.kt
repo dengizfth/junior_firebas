@@ -65,7 +65,7 @@ class UploadFragment : Fragment() {
         storage = Firebase.storage
         db = Firebase.firestore
 
-
+        reginsterLauncher()
     }
 
     override fun onCreateView(
@@ -79,82 +79,6 @@ class UploadFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Resim seçme için api 33 altı , 33 ve üstü için ayrı ayrı kontroller:
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // sdk 33 ve yukarısı için -> read media images izni :
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.READ_MEDIA_IMAGES
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                // İzin yok, izin iste :
-
-                //Daha öncesinde izin istemiyi red etti mi ? kontrol edilmesi :
-                if (ActivityCompat.shouldShowRequestPermissionRationale(
-                        requireActivity(),
-                        Manifest.permission.READ_MEDIA_IMAGES
-                    )
-                ) {
-                    //İzni red etmiş : Bunun için neden izin istediğimizi açıklayarak bir kere daha izin istenilmeli :
-                    Snackbar.make(
-                        view,
-                        "Galeriden Fotoraf seçmek için vermeniz gerekiyor",
-                        Snackbar.LENGTH_INDEFINITE
-                    ).setAction("İzin Ver", View.OnClickListener {
-                            // İzin İsteyeceğimiz alan :
-                            permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
-                        }).show()
-                } else {
-                    // izin isteyeceğimiz alan :
-                    permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
-                }
-
-            } else {
-                // izin var , telefonun galerisini aç :
-                // Galeriyi aç :
-                val intentToGallery =
-                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                activityResultLauncher.launch(intentToGallery)
-            }
-
-
-        } else {
-            // sdk 33'ün altındaki eski versionlar için -> read external storage :
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                // İzin yok, izin iste :
-
-                //Daha öncesinde izin istemiyi red etti mi ? kontrol edilmesi :
-                if (ActivityCompat.shouldShowRequestPermissionRationale(
-                        requireActivity(),
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    )
-                ) {
-                    //İzni red etmiş : Bunun için neden izin istediğimizi açıklayarak bir kere daha izin istenilmeli :
-                    Snackbar.make(
-                        view,
-                        "Galeriden Fotoraf seçmek için vermeniz gerekiyor",
-                        Snackbar.LENGTH_INDEFINITE
-                    ).setAction("İzin Ver", View.OnClickListener {
-                            // İzin İsteyeceğimiz alan :
-                            permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-                        }).show()
-                } else {
-                    // izin isteyeceğimiz alan :
-                    permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-                }
-
-            } else {
-                // izin var , telefonun galerisini aç :
-                // Galeriyi aç :
-                val intentToGallery =
-                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                activityResultLauncher.launch(intentToGallery)
-            }
-        }
 
 
         binding.uploadBtn.setOnClickListener {
@@ -202,7 +126,83 @@ class UploadFragment : Fragment() {
         }
 
         binding.imageView.setOnClickListener {
-            reginsterLauncher()
+
+            // Resim seçme için api 33 altı , 33 ve üstü için ayrı ayrı kontroller:
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                // sdk 33 ve yukarısı için -> read media images izni :
+                if (ContextCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.READ_MEDIA_IMAGES
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // İzin yok, izin iste :
+
+                    //Daha öncesinde izin istemiyi red etti mi ? kontrol edilmesi :
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(
+                            requireActivity(),
+                            Manifest.permission.READ_MEDIA_IMAGES
+                        )
+                    ) {
+                        //İzni red etmiş : Bunun için neden izin istediğimizi açıklayarak bir kere daha izin istenilmeli :
+                        Snackbar.make(
+                            view,
+                            "Galeriden Fotoraf seçmek için vermeniz gerekiyor",
+                            Snackbar.LENGTH_INDEFINITE
+                        ).setAction("İzin Ver", View.OnClickListener {
+                            // İzin İsteyeceğimiz alan :
+                            permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+                        }).show()
+                    } else {
+                        // izin isteyeceğimiz alan :
+                        permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+                    }
+
+                } else {
+                    // izin var , telefonun galerisini aç :
+                    // Galeriyi aç :
+                    val intentToGallery =
+                        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    activityResultLauncher.launch(intentToGallery)
+                }
+
+
+            } else {
+                // sdk 33'ün altındaki eski versionlar için -> read external storage :
+                if (ContextCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // İzin yok, izin iste :
+
+                    //Daha öncesinde izin istemiyi red etti mi ? kontrol edilmesi :
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(
+                            requireActivity(),
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                    ) {
+                        //İzni red etmiş : Bunun için neden izin istediğimizi açıklayarak bir kere daha izin istenilmeli :
+                        Snackbar.make(
+                            view,
+                            "Galeriden Fotoraf seçmek için vermeniz gerekiyor",
+                            Snackbar.LENGTH_INDEFINITE
+                        ).setAction("İzin Ver", View.OnClickListener {
+                            // İzin İsteyeceğimiz alan :
+                            permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        }).show()
+                    } else {
+                        // izin isteyeceğimiz alan :
+                        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }
+
+                } else {
+                    // izin var , telefonun galerisini aç :
+                    // Galeriyi aç :
+                    val intentToGallery =
+                        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    activityResultLauncher.launch(intentToGallery)
+                }
+            }
         }
     }
 
