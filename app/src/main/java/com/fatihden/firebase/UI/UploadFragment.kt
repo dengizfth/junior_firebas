@@ -118,7 +118,8 @@ class UploadFragment : Fragment() {
                     }
                 }.addOnFailureListener { exception ->
                     // Yükleme esnasında hata fırlatıyorsa :
-                    Toast.makeText(requireContext(),"Hata 2 " + exception.toString(),Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(),"Hata 2 " + exception.localizedMessage,Toast.LENGTH_LONG).show()
+                    //println("Hata 2 " + exception.localizedMessage?.toString())
                 }
             }
 
